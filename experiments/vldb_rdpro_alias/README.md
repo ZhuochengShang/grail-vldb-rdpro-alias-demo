@@ -48,6 +48,9 @@ under `experiments/vldb_rdpro_alias/prepared/`, then freeze those artifacts.
 The live loop consumes the frozen hints but does not rewrite documentation or
 run a five-round repair cycle.
 
+Admission validation is implemented by `prepared_gate.py`; only directories
+passing `validate_case` should be offered by the live UI.
+
 ```text
 offline candidate
   → source-aware deep dive
