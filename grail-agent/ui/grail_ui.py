@@ -7,6 +7,7 @@ import os
 import re
 import shutil
 import subprocess
+import sys
 import zipfile
 from dataclasses import dataclass
 from pathlib import Path
@@ -35,6 +36,10 @@ from rdpro_section_codegen.compile_runner import resolve_cached_package_jars
 # Repo-relative paths: this file lives at grail-agent/ui/grail_ui.py
 GRAIL_AGENT_ROOT = Path(__file__).resolve().parents[1]   # grail-agent/
 PROJECT_ROOT = GRAIL_AGENT_ROOT
+REPO_ROOT = GRAIL_AGENT_ROOT.parent
+PREPARED_GATE_DIR = (REPO_ROOT / "experiments" / "vldb_rdpro_alias").resolve()
+sys.path.insert(0, str(PREPARED_GATE_DIR))
+from prepared_gate import ready_cases  # noqa: E402
 NOTEBOOK_DIR = GRAIL_AGENT_ROOT
 CODEGEN_DIR = (GRAIL_AGENT_ROOT / "src" / "rdpro_section_codegen").resolve()
 # Local machine environments (see configs/local_data_paths.md)
@@ -1793,7 +1798,25 @@ def main() -> None:
     st.set_page_config(page_title="GRAIL", layout="wide")
     inject_compact_styles()
 
-    selected_case_name = st.session_state.get("selected_case_name", "Boston_Zonal_Summary")
+    prepared = ready_cases(PREPARED_GATE_DIR / "prepared")
+    if os.environ.get("GRAIL_VLDB_ALLOW_UNPREPARED", "0") != "1":
+        if not prepared:
+            st.error("No prevalidated VLDB cases are available. Run offline preparation first.")
+            st.caption(f"Expected prepared cases under: {PREPARED_GATE_DIR / 'prepared'}")
+            st.stop()
+        admitted = {name: PRELOAD_CASES[name] for name in prepared if name in PRELOAD_CASES}
+        if not admitted:
+            st.error("Prepared cases do not match any configured VLDB preload case.")
+            st.stop()
+    else:
+        admitted = PRELOAD_CASES
+
+    selected_case_name = st.session_state.get("selected_case_name", next(iter(admitted)))
+    if selected_case_name not in admitted:
+        selected_case_name = next(iter(admitted))
+    if admitted is not PRELOAD_CASES:
+        PRELOAD_CASES.clear()
+        PRELOAD_CASES.update(admitted)
 
     title_col, setup_col = st.columns([0.12, 0.88], vertical_alignment="center")
     with title_col:
