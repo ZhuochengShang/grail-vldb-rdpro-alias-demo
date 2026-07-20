@@ -1,0 +1,31 @@
+zone_id,zone_name,class_value,class_name,pixel_count,percent
+0,Roxbury,11,Open Water,11,0.1161
+0,Roxbury,21,"Developed, Open Space",1478,15.5957
+0,Roxbury,22,"Developed, Low Intensity",1267,13.3692
+0,Roxbury,23,"Developed, Medium Intensity",4255,44.8982
+0,Roxbury,24,"Developed, High Intensity",2147,22.6548
+0,Roxbury,41,Deciduous Forest,293,3.0917
+0,Roxbury,43,Mixed Forest,13,0.1372
+0,Roxbury,90,Woody Wetlands,9,0.095
+0,Roxbury,95,Emergent Herbaceous Wetlands,4,0.0422
+1,Dorchester,11,Open Water,5,0.0238
+1,Dorchester,21,"Developed, Open Space",743,3.5437
+1,Dorchester,22,"Developed, Low Intensity",2447,11.6707
+1,Dorchester,23,"Developed, Medium Intensity",12060,57.519
+1,Dorchester,24,"Developed, High Intensity",5213,24.8629
+1,Dorchester,31,Barren Land,5,0.0238
+1,Dorchester,41,Deciduous Forest,10,0.0477
+1,Dorchester,71,Grassland/Herbaceous,102,0.4865
+1,Dorchester,90,Woody Wetlands,3,0.0143
+1,Dorchester,95,Emergent Herbaceous Wetlands,379,1.8076
+ALL,Boston_All_Neighborhoods,11,Open Water,16,0.0526
+ALL,Boston_All_Neighborhoods,21,"Developed, Open Space",2221,7.2954
+ALL,Boston_All_Neighborhoods,22,"Developed, Low Intensity",3714,12.1994
+ALL,Boston_All_Neighborhoods,23,"Developed, Medium Intensity",16315,53.5902
+ALL,Boston_All_Neighborhoods,24,"Developed, High Intensity",7360,24.1755
+ALL,Boston_All_Neighborhoods,31,Barren Land,5,0.0164
+ALL,Boston_All_Neighborhoods,41,Deciduous Forest,303,0.9953
+ALL,Boston_All_Neighborhoods,43,Mixed Forest,13,0.0427
+ALL,Boston_All_Neighborhoods,71,Grassland/Herbaceous,102,0.335
+ALL,Boston_All_Neighborhoods,90,Woody Wetlands,12,0.0394
+ALL,Boston_All_Neighborhoods,95,Emergent Herbaceous Wetlands,383,1.258
